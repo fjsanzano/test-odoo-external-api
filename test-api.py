@@ -43,9 +43,13 @@ else:
     # AZUCARES#                 azucares
     # PROTEINAS#                proteinas
     # SAL#                      sal
-    ids = objects.execute_kw(db, uid, password, model, 'search', [[['sale_ok', '=', True]]],)
+    ids = objects.execute_kw(db, uid, password, model, 'search', [[['sale_ok', '=', True]]])
     for product in objects.execute_kw(db, uid, password, model, 'read', [ids],
                                       {'fields': ['name', 'conservation_type', 'ingredients', 'barcode', 'default_code',
                                                   'qty_available', 'list_price', 'valor_energetico_kcal', 'total_grasas',
-                                                  'grasas_saturadas', 'hidratos_carbono', 'azucares', 'proteinas', 'sal']}):
+                                                  'grasas_saturadas', 'hidratos_carbono', 'azucares', 'proteinas', 'sal', 'logo_type_id']}):
+        # obtener el nombre del logo del producto
+        if product['logo_type_id']:
+            product['logo'] = product['logo_type_id'][1]
+
         print(product)
