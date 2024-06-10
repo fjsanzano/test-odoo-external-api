@@ -49,7 +49,6 @@ else:
                                                   'qty_available', 'list_price', 'valor_energetico_kcal', 'total_grasas',
                                                   'grasas_saturadas', 'hidratos_carbono', 'azucares', 'proteinas', 'sal', 'logo_type_id']}):
         # obtener el nombre del logo del producto
-        if product['logo_type_id']:
+        if product['logo_type_id'] and product['logo_type_id'][1]:
             product['logo'] = product['logo_type_id'][1]
-
-        print(product)
+            print(product['logo'])
